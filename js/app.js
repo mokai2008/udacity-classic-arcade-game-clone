@@ -11,34 +11,37 @@ class Enemy {
         
     
         // check that the position of enemy on canvas and speed of enemies
-   if (this.posX < 505) {
-        if (this.posY < 100) {
-            this.posX += 300 * dt;
+        
+        if (this.posX < 505) {
+            
+            if (this.posY < 100) {
+                this.posX += 300 * dt;
+            }
+            if (this.posY < 200) {
+                this.posX += 250 * dt;
+            }
+            if (this.posY > 200) {
+                this.posX += 150 * dt;
+            }
+            
+        } else {
+            this.posX = 0;
         }
-        if (this.posY < 200) {
-            this.posX += 250 * dt;
-        }
-        if (this.posY > 200) {
-            this.posX += 150 * dt;
-        }
-   }
-   else {
-    this.posX = 0;
-   }
         
         // check collisions
         
         if (player.posX < this.posX + 20 && player.posX + 30 > this.posX &&
         player.posY < this.posY + 20 && 30 + player.posY > this.posY) {
+        alert("You have lost . Try again!");
         player.posX = 200;
         player.posY = 400;
-    }
+        }
     };
     
     // drawing the enmey on the screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.posX, this.posY);
-      };
+    };
 }
 
 
@@ -68,14 +71,15 @@ class Player {
 
     // Check when the player win the game
     if (this.posY <= 0) {
+        alert("Congratulations! You have won the game");
         this.posX = 200;
         this.posY = 400;
-    }
-};
+     }
+     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.posX, this.posY);
-};
+    }
     
     // player movement
     
@@ -83,21 +87,21 @@ class Player {
         switch (keyPress) {
 
             case 'up':
-                this.posY -= 80;
+                this.posY -= 83;
                 break;
             case 'down':
-                this.posY += 80;
+                this.posY += 83;
                 break;
             case 'right':
-                this.posX += 90;
+                this.posX += 101;
                 break;
             case 'left':
-                this.posX -= 90;
+                this.posX -= 101;
                 break;
 
- };
-};
-};
+        };
+        }
+}
 
 let allEnemies = [];
 let enemy;
